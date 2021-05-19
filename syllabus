@@ -1,0 +1,22 @@
+
+Syllabus for Linux Privilege escalation 
+
+A Multitude of Privilege escalation technique 
+	- Kernel Exploits 
+	- Password Hunting 
+	- File Permission 
+	- Sudo 	
+		- shell escaping, intended functionality, LD_PRELOAD
+		- CVE-2019-14287
+		- CVE-2019-18634
+	- SUID 
+		- Shared Object Injection 
+		- Binary Symlinks 
+		- Environment Variables 
+	- Capabilities 
+	- Scheduled task 
+	- NFS
+	- Docker
+
+
+
