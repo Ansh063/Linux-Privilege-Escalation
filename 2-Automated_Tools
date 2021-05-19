@@ -1,0 +1,7 @@
+
+Enumeration Using Automated Tools : 
+
+First run     ----> linpeas.sh 
+second run    ----> linux-exploit-suggester.sh 
+third run     ----> linuxprivchecker.py
+

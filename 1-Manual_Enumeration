@@ -1,0 +1,56 @@
+
+system enumeration : 
+	-> hostname
+	-> uname -a 
+	-> cat /proc/version 
+	-> cat /etc/issue
+
+Achitecture Information : 
+	-> lscpu 
+
+Services enumeration : 
+	-> ps aux
+	-> ps aux | grep root 
+
+User Enumeration : 
+	-> whoami
+	-> id
+	-> sudo -l 
+		-> what we can run as root
+		Sample Output 
+		TCM@debian:~$ sudo -l 
+		Matching Defaults entries for TCM on this host:
+		    env_reset, env_keep+=LD_PRELOAD
+
+		User TCM may run the following commands on this host:
+   			(root) NOPASSWD: /usr/sbin/iftop
+    			(root) NOPASSWD: /usr/bin/find
+    			(root) NOPASSWD: /usr/bin/nano
+    			(root) NOPASSWD: /usr/bin/vim
+    			(root) NOPASSWD: /usr/bin/man
+    			(root) NOPASSWD: /usr/bin/awk
+    			(root) NOPASSWD: /usr/bin/less
+    			(root) NOPASSWD: /usr/bin/ftp
+    			(root) NOPASSWD: /usr/bin/nmap
+    			(root) NOPASSWD: /usr/sbin/apache2
+    			(root) NOPASSWD: /bin/more
+	-> cat /etc/passwd
+	-> cat /etc/passwd | cut -d : -f 1   [this will pull down all the username]
+	-> cat /etc/group 
+	-> history 
+
+Network Enumeration : 
+	-> ifconfig
+	-> ip a
+	-> ip route
+	-> arp -a
+	-> ip neigh 
+	-> netstat -ano 
+
+Password Hunting : 
+	-> grep --color=auto -rnw '/' -ie "PASSWORD=" --color=always 2> /dev/null
+	-> locate password | more 
+	-> find / -name id_rsa 2> /dev/null
+
+
+
