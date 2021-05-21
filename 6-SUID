@@ -1,0 +1,32 @@
+
+SUID : Set User ID 
+
+This has to deal with permission settings 
+
+permissions into three parts 
+
+1. File Owner 
+2. group 
+3. Everybody else
+
+4 Bits for Read 
+2 Bits for write 
+1 Bit for execute 
+
+run this command : 
+
+find / -perm -u=s -type f 2> /dev/null
+
+-rwsr-xr-x 1 root root 37552 Feb 15  2011 /usr/bin/chsh
+
+here 's' is present in -rws 
+
+s means suid 
+g means sgid
+t means sticky bit 
+
+Here we are hunting for this 's' in the permissions 
+
+we can also use linpeas 
+
+now go to gtfobins site and click on SUID 
