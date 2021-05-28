@@ -1,0 +1,1 @@
+wfuzz -c -f sub-fighter -w top-5000-subdomain.txt -u http://cmess.htm/ -H Host: FUZZ.cmess.htm
